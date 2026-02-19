@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Rohan Khatiwada — Portfolio" />
+  <title>Rohan Khatiwada — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Professional light theme */
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface2:#f6f8fc;
+      --border:#e6ebf5;
+
+      --text:#0b1220;
+      --muted:#51607a;
+
+      --blue:#1f57ff;   /* primary */
+      --blue2:#0f3bd9;
+
+      --red:#b11f2c;    /* accent */
+      --red2:#8f1823;
+
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+      --navH: 72px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(31,87,255,.10), transparent 60%),
+        radial-gradient(820px 520px at 90% 10%, rgba(177,31,44,.08), transparent 60%),
+        linear-gradient(180deg, #ffffff, #fbfcff);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 18px 70px}
+    .skip{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip:focus{left:16px; top:16px; width:auto; height:auto; background:#fff; padding:10px 12px; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow); z-index:9999}
+
+    /* NAV */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      height: var(--navH);
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      height: var(--navH);
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:-.2px;
+      white-space:nowrap;
+    }
+    .mark{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--blue), var(--red));
+      box-shadow: 0 0 0 6px rgba(31,87,255,.12);
+    }
+
+    nav{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 999px;
+      font-weight:700;
+      font-size: 13px;
+      border:1px solid transparent;
+    }
+    nav a:hover{color:var(--text); background: var(--surface2); border-color: var(--border)}
+    nav a.active{color:var(--blue2); background: rgba(31,87,255,.08); border-color: rgba(31,87,255,.22)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: var(--surface);
+      text-decoration:none;
+      font-weight:800;
+      font-size: 13px;
+      box-shadow: none;
+      cursor:pointer;
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover{border-color:#d5dceb; box-shadow: 0 10px 26px rgba(15,23,42,.08)}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color:#fff;
+    }
+    .btn.accent{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color:#fff;
+    }
+
+    @media (max-width: 920px){
+      nav a.link{display:none}
+      nav .btn{display:inline-flex}
+    }
+
+    /* SECTION BASE */
+    section{scroll-margin-top: calc(var(--navH) + 18px)}
+    .section{padding-top: 38px}
+    .section h2{
+      margin: 0 0 14px;
+      font-size: 18px;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .bar{
+      height:10px; width:32px; border-radius:999px;
+      background: linear-gradient(135deg, rgba(31,87,255,.95), rgba(177,31,44,.85));
+    }
+
+    /* CARDS / GRID */
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px}
+    .col-12{grid-column: span 12}
+    .col-8{grid-column: span 8}
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    @media (max-width: 920px){
+      .col-8,.col-6,.col-4{grid-column: span 12}
+    }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .box{padding: 18px}
+    .top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+    .when{color: var(--muted); font-weight:700; font-size: 13px}
+    .muted{color: var(--muted)}
+    .tags{margin-top: 12px; display:flex; flex-wrap:wrap; gap:8px}
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: #2b3a57;
+      font-weight:700;
+    }
+
+    /* HERO (Hello, my name is / And I'm a ...) */
+    .hero{
+      padding-top: 34px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 920px){ .hero{grid-template-columns: 1fr} }
+
+    .hero-main{padding: 22px 22px}
+    .kicker{color: var(--muted); font-weight:800; font-size: 14px}
+    h1{margin: 10px 0 8px; font-size: 46px; line-height: 1.08; letter-spacing:-1px}
+    @media (max-width: 560px){ h1{font-size: 38px} }
+
+    .type-row{
+      margin: 10px 0 10px;
+      display:flex; flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      font-size: 16px;
+    }
+    .type-row .label{color: var(--muted); font-weight:800}
+    .type-row .type{
+      color: var(--blue2);
+      position:relative;
+      padding-right: 10px;
+    }
+    .cursor{
+      width:10px; height:18px; border-radius: 6px;
+      display:inline-block;
+      background: linear-gradient(180deg, var(--blue), var(--red));
+      margin-left:6px;
+      transform: translateY(3px);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink{ 50%{opacity:0} }
+
+    .subtitle{margin: 0 0 16px; color: var(--muted); max-width: 68ch}
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin: 16px 0 18px}
+    .pill{
+      font-size: 13px;
+      font-weight:700;
+      color: #2b3a57;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: var(--surface2);
+    }
+    .cta{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+
+    /* PHOTO */
+    .side{padding: 18px}
+    .photo{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      border: 1px dashed #cfd7ea;
+      background:
+        radial-gradient(420px 260px at 35% 22%, rgba(31,87,255,.10), transparent 60%),
+        radial-gradient(380px 260px at 70% 75%, rgba(177,31,44,.08), transparent 60%),
+        linear-gradient(135deg, #ffffff, #f6f8fc);
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .photo img{width:100%; height:100%; object-fit:cover; display:block}
+    .photo .placeholder{text-align:center; padding:14px}
+    .photo .placeholder .initials{
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #2b3a57;
+      display:block;
+    }
+    .photo .placeholder .hint{
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight:700;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .meta{margin-top: 14px; display:grid; gap:10px}
+    .meta > a, .meta > div{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      text-decoration:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+    .meta strong{color: var(--text); font-weight:900}
+
+    /* PORTFOLIO CARDS */
+    .portfolio a{color: var(--blue2); text-decoration:none; font-weight:800}
+    .portfolio a:hover{text-decoration:underline}
+
+    /* SKILL BARS (Asmit-like) */
+    .skill{
+      display:grid;
+      gap:10px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill:last-child{border-bottom:none}
+    .skill .row{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      font-weight:800;
+    }
+    .skill .row span{color: var(--muted); font-weight:800}
+    .barwrap{
+      width:100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #eef2fb;
+      border: 1px solid var(--border);
+      overflow:hidden;
+    }
+    .barfill{
+      height:100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(31,87,255,.95), rgba(177,31,44,.70));
+      width: 0%;
+      transition: width .8s ease;
+    }
+
+    /* FOOTER */
+    footer{
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 13px;
+    }
+
+    /* TOAST */
+    .toast{
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.95);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      display:none;
+      z-index: 99;
+      font-weight:800;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Rohan Khatiwada</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#portfolio">Portfolio</a>
+        <a class="link" href="#skills">Skills</a>
+        <a class="link" href="#contact">Contact</a>
+        <a class="btn" href="#resume">Resume</a>
+        <a class="btn primary" href="mailto:khatiwadarohan2@gmail.com">Email Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- HOME -->
+    <section id="content" class="hero" aria-label="Home">
+      <div class="card hero-main">
+        <div class="kicker">Hello, my name is</div>
+        <h1>Rohan Khatiwada</h1>
+
+        <div class="type-row" aria-label="Role">
+          <span class="label">And I'm a</span>
+          <span class="type" id="typeText">Digital Marketing Analyst</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+
+        <p class="subtitle">
+          Computer Science & Technology graduate (Herald College Kathmandu, 2:1) with professional experience
+          running and optimizing Google Ads and Meta Ads, tracking performance with Analytics platforms,
+          and supporting SEO + keyword research.
+        </p>
+
+        <div class="pill-row" aria-label="Highlights">
+          <span class="pill">Kathmandu, Nepal</span>
+          <span class="pill">Google Ads / Meta Ads</span>
+          <span class="pill">Google Analytics / Meta Ads Manager</span>
+          <span class="pill">SEO + Keyword Research</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#resume">Download Resume</a>
+          <button class="btn" type="button" onclick="copyText('khatiwadarohan2@gmail.com','Email copied')">Copy Email</button>
+          <button class="btn" type="button" onclick="copyText('(981) 50-38876','Phone copied')">Copy Phone</button>
+          <!-- Optional: if you want, replace this with your actual LinkedIn profile URL -->
+          <a class="btn accent" href="https://www.linkedin.com/in/jontyrodey" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="card side" aria-label="Photo card">
+        <!-- PHOTO AREA -->
+        <div class="photo" aria-label="Profile photo">
+          <img src="profile.png" alt="Rohan Khatiwada"
+               onerror="this.remove(); document.getElementById('photoPlaceholder').style.display='block';" />
+          <div id="photoPlaceholder" class="placeholder" style="display:none">
+            <span class="initials">RK</span>
+            <div class="hint">
+              Add your photo as <b>photo.jpg</b><br/>
+              (same folder as index.html)
+            </div>
+          </div>
+        </div>
+
+        <div class="meta">
+          <div><span>Role</span><strong>Marketing Analyst</strong></div>
+          <div><span>Email</span><strong>khatiwadarohan2@gmail.com</strong></div>
+          <div><span>Phone</span><strong>(981) 50-38876</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-label="About">
+      <h2><span class="bar" aria-hidden="true"></span>About Me</h2>
+      <div class="grid">
+        <div class="card box col-8">
+          <p class="muted">
+            I’m Rohan Khatiwada — a Computer Science and Technology graduate with hands-on experience managing
+            performance marketing campaigns across Google Ads and Meta Ads. I monitor and optimize campaign performance
+            using Google Analytics and Meta Ads Manager, and I support SEO and keyword research to improve visibility.
+          </p>
+          <p class="muted">
+            Alongside marketing analytics, I’ve built software projects including a MERN Job Portal (final year project)
+            and an embedded Distance Measuring System using Arduino and C++.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Performance Marketing</span>
+            <span class="tag">Analytics</span>
+            <span class="tag">SEO</span>
+            <span class="tag">MERN</span>
+            <span class="tag">Java</span>
+          </div>
+        </div>
+
+        <div class="card box col-4">
+          <div class="top">
+            <strong>Education</strong>
+            <span class="when">Jun 2024</span>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            <b>Herald College Kathmandu</b><br/>
+            B.S. in Computer Science and Technology (2:1)<br/>
+            Relevant: Big Data, OOP, AI/ML
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO / PROJECTS -->
+    <section id="portfolio" class="section portfolio" aria-label="Portfolio">
+      <h2><span class="bar" aria-hidden="true"></span>My Portfolio</h2>
+
+      <div class="grid">
+        <article class="card box col-6">
+          <div class="top">
+            <strong>Job Portal — Final Year Project</strong>
+            <span class="when">May 2024</span>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            Full-stack job search and recruitment platform using the MERN stack with job listings, authentication,
+            resume uploads, and application tracking. Responsive UI with React and secure REST APIs with Express/Node,
+            using MongoDB for storage.
+          </p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node/Express</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">REST APIs</span>
+          </div>
+          <p class="muted" style="margin-top:12px">
+            Link: <span class="muted">Add GitHub/demo link here</span>
+          </p>
+        </article>
+
+        <article class="card box col-6">
+          <div class="top">
+            <strong>Distance Measuring System — Embedded</strong>
+            <span class="when">Oct 2022</span>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            Distance measuring system using C++ with Arduino UNO, ultrasonic sensor, and LED display to measure and
+            display object distance.
+          </p>
+          <div class="tags">
+            <span class="tag">C++</span>
+            <span class="tag">Arduino UNO</span>
+            <span class="tag">Ultrasonic Sensor</span>
+          </div>
+          <p class="muted" style="margin-top:12px">
+            Link: <span class="muted">Add GitHub/demo link here</span>
+          </p>
+        </article>
+
+        <div class="card box col-12">
+          <div class="top">
+            <strong>Professional Experience</strong>
+            <span class="when">2025</span>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            <b>Digital Marketing Analyst</b> — Far Beyond Education (Apr 2025 – Present): Managed and optimized Google Ads
+            and Meta Ads; monitored performance using Analytics tools; created weekly reports; supported SEO/keyword research.
+          </p>
+          <p class="muted" style="margin-top:10px">
+            <b>Digital Performance Analyst</b> — A.Two Enterprises PVT. LTD. (Jan 2025 – Apr 2025): Optimized campaigns,
+            ran reporting and analysis, reviewed Daraz sales/customer behavior, supported SEO, and collaborated with design
+            team to improve creatives and landing pages.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section" aria-label="Skills">
+      <h2><span class="bar" aria-hidden="true"></span>My Skills</h2>
+
+      <div class="grid">
+        <div class="card box col-6">
+          <div class="top">
+            <strong>Marketing / Analytics</strong>
+            <span class="when">Core</span>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>Google Ads</div><span>80%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="80"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>Meta Ads</div><span>80%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="80"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>Google Analytics</div><span>75%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="75"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>SEO</div><span>70%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="70"></div></div>
+          </div>
+        </div>
+
+        <div class="card box col-6">
+          <div class="top">
+            <strong>Development</strong>
+            <span class="when">Technical</span>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>MERN (Framework)</div><span>70%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="70"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>Java</div><span>60%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="60"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>Python</div><span>55%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="55"></div></div>
+          </div>
+
+          <div class="skill">
+            <div class="row"><div>SQL</div><span>55%</span></div>
+            <div class="barwrap"><div class="barfill" data-w="55"></div></div>
+          </div>
+        </div>
+
+        <div class="card box col-12">
+          <div class="top">
+            <strong>Tools / OS</strong>
+            <span class="when">Extras</span>
+          </div>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Canva</span>
+            <span class="tag">Adobe Photoshop</span>
+            <span class="tag">Adobe Illustrator</span>
+            <span class="tag">Windows 7/8/10</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="section" aria-label="Resume">
+      <h2><span class="bar" aria-hidden="true"></span>Download My Resume</h2>
+      <div class="grid">
+        <div class="card box col-12">
+          <div class="top">
+            <strong>Resume (PDF)</strong>
+            <span class="when">Updated</span>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            Place <b>RohanKhatiwada_Updated_CV.pdf</b> in the same folder as <b>index.html</b>.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px">
+            <a class="btn primary" href="RohanKhatiwada_Updated_CV.pdf" download>Download Resume</a>
+            <a class="btn" href="RohanKhatiwada_Updated_CV.pdf" target="_blank" rel="noopener">View in Browser</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-label="Contact">
+      <h2><span class="bar" aria-hidden="true"></span>Contact Me</h2>
+
+      <div class="grid">
+        <div class="card box col-8">
+          <p class="muted">
+            If you have any questions or want to work together, feel free to reach out.
+          </p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px">
+            <a class="btn primary" href="mailto:khatiwadarohan2@gmail.com">Email</a>
+            <a class="btn" href="tel:+9779815038876">Call</a>
+            <button class="btn" type="button" onclick="copyText('khatiwadarohan2@gmail.com','Email copied')">Copy Email</button>
+            <button class="btn accent" type="button" onclick="copyText('+9779815038876','Phone copied')">Copy Phone</button>
+          </div>
+
+          <div class="card" style="margin-top:14px; box-shadow:none; border-radius:14px">
+            <div class="box" style="background: var(--surface2); border-radius:14px">
+              <div class="top">
+                <strong>Details</strong>
+                <span class="when">From resume</span>
+              </div>
+              <p class="muted" style="margin-top:10px">
+                <b>Email:</b> khatiwadarohan2@gmail.com<br/>
+                <b>Phone:</b> (981) 50-38876
+              </p>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Rohan Khatiwada</div>
+      <div>• <a href="#top">Back to top</a></div>
+    </footer>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Copy helper + toast
+    function copyText(text, msg){
+      navigator.clipboard.writeText(text).then(() => showToast(msg || "Copied"));
+    }
+    function showToast(msg){
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => { t.style.display = "none"; }, 2200);
+    }
+
+    // Simple typewriter swap 
+    const roles = [
+      "Digital Marketing Analyst",
+      "Digital Performance Analyst",
+      "CS & Technology Graduate"
+    ];
+    const el = document.getElementById("typeText");
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % roles.length;
+      el.textContent = roles[i];
+    }, 2400);
+
+    // Animate skill bars on load
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".barfill").forEach(b => {
+        const w = b.getAttribute("data-w") || "60";
+        b.style.width = w + "%";
+      });
+    });
+
+    // Active nav highlight on scroll
+    const sections = [...document.querySelectorAll("section[id]")];
+    const navLinks = [...document.querySelectorAll("nav a[href^='#']")];
+    const byId = (id) => navLinks.find(a => a.getAttribute("href") === "#" + id);
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        navLinks.forEach(a => a.classList.remove("active"));
+        const link = byId(e.target.id);
+        if(link) link.classList.add("active");
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.02 });
+
+    sections.forEach(s => obs.observe(s));
+  </script>
+</body>
+</html>
